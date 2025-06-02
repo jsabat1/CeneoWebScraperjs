@@ -1,7 +1,8 @@
 from flask import redirect, render_template, request, url_for
-from app.models import Product
+
 from app import app
 from app.forms import ProductIdForm
+from app.models import Product
 
 
 @app.route("/")
@@ -21,9 +22,16 @@ def extract():
     if form.validate():
         product_id = form.product_id.data
         product = Product(product_id)
+        product.extract_name()
+        product.extract_opinions()
+        product.calculate_stats()
+        product.generate_charts
+        product.save_info()
+        product.save_opinions()
         return redirect(url_for("product", product_id=product_id))
     else:
         return render_template("extract.html", form=form)
+
 
 @app.route("/product/<product_id>")
 def product(product_id):
