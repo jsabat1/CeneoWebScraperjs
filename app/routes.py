@@ -21,11 +21,13 @@ def extract():
     form = ProductIdForm(request.form)
     if form.validate():
         product_id = form.product_id.data
+        print(f"product_id: {product_id}")
         product = Product(product_id)
+        print(product)
         product.extract_name()
         product.extract_opinions()
         product.calculate_stats()
-        product.generate_charts
+        product.generate_charts()
         product.save_info()
         product.save_opinions()
         return redirect(url_for("product", product_id=product_id))

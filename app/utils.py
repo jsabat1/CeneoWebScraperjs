@@ -23,13 +23,11 @@ def extract_data(ancestor, selector=None, attribute=None, multiple=False):
     return None
 
 
-def tranlate_data(text, source="pl", target="en"):
+def translate_data(text, source="pl", target="en"):
     return GoogleTranslator(source, target).translate(text)
 
 
 def create_if_not_exists(path):
-    import os
-
     if not os.path.exists(path):
         os.makedirs(path)
     return path
